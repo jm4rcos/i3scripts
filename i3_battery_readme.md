@@ -25,3 +25,17 @@ examples:
 
 * requirements
 
+this  python  script  uses  acpi  to get battery status and requires FontAwesome
+to be installed on your system.
+
+https://fortawesome.github.io/Font-Awesome/
+
+key value for "markup" has to be "pango" in i3blocks config file, see example below:
+
+```
+# battery status
+[batt]
+command=~/github/i3scripts/i3_battery.py
+markup=pango
+interval=10
+```
