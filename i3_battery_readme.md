@@ -3,4 +3,4 @@
 battery indication:
 ![alt text][logo]
 
-[logo]: https://github.com/jm4rcos/i3scripts/img/bat_100.png "battery indication 100%"
+[logo]: https://github.com/jm4rcos/i3scripts/blob/master/img/bat_100.png "battery indication 100%"
