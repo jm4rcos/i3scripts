@@ -2,7 +2,7 @@
 
 #### Battery indication:
 
-This python script outputs battery percentage charge status and AC adapter power cord status. 
+This python script outputs battery percentage charge status and AC adapter power cord status.
 
 examples:
 
@@ -10,20 +10,20 @@ examples:
 
    ![alt text][bat100]
 
-2. Battery 62% charged and AC adapter power cord unplugged. 
+2. Battery 62% charged and AC adapter power cord unplugged.
 
    ![alt text][bat62]
-  
+
 3. Battery 15% charged and AC adapter power cord unplugged.
 
    ![alt text][bat15]
-  
+
 [bat100]: https://github.com/jm4rcos/i3scripts/blob/master/img/bat_100.png "battery indication 100%"
 [bat62]: https://github.com/jm4rcos/i3scripts/blob/master/img/bat_62.png "battery indication 62%"
 [bat15]: https://github.com/jm4rcos/i3scripts/blob/master/img/bat_15.png "battery indication 15%"
 
 
-#### requirements
+#### Requirements
 
 This  python  script  uses  acpi  to get battery status and requires FontAwesome to be installed on your system.
 
