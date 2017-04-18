@@ -1,20 +1,20 @@
 ## Readme file for i3_baterry.py
 
-#### battery indication:
+#### Battery indication:
 
 This python script outputs battery percentage charge status and AC adapter power cord status. 
 
 examples:
 
-1. battery 100% charged and AC adapter power cord plugged.
+1. Battery 100% charged and AC adapter power cord plugged.
 
    ![alt text][bat100]
 
-2. battery 62% charged and AC adapter power cord unplugged. 
+2. Battery 62% charged and AC adapter power cord unplugged. 
 
    ![alt text][bat62]
   
-3. battery 15% charged and AC adapter power cord unplugged.
+3. Battery 15% charged and AC adapter power cord unplugged.
 
    ![alt text][bat15]
   
@@ -25,8 +25,7 @@ examples:
 
 #### requirements
 
-this  python  script  uses  acpi  to get battery status and requires FontAwesome
-to be installed on your system.
+This  python  script  uses  acpi  to get battery status and requires FontAwesome to be installed on your system.
 
 https://fortawesome.github.io/Font-Awesome/
 
