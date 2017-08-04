@@ -1,55 +1,73 @@
-#!/usr/bin/env python
-'''
-GNU - GENERAL PUBLIC LICENSE v3
+#!/usr/bin/env python3
+#
+# GNU GENERAL PUBLIC LICENSE v3
+#
+# Copyright (C) <2016> JOSE MARCOS <jm4rcos@gmail.com>
+#
+# This program  is free software: you can redistribute it and/or modify it under
+# the  terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3  of  the License, or (at your option)  any  later
+# version.
+#
+# This  program  is distributed in the hope that it will be useful,  but WITHOUT
+# ANY WARRANTY;  without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+# See <http://www.gnu.org/licenses/>  for more details of the GNU General Public
+# License.
+#
+# comments/requirements:
+# no commnets/requirements
 
-get_extarnal_ip.py
+import urllib.request, urllib.error, urllib.parse
+import itertools
 
-Copyright (C) <2016> JOSE (J) MARCOS <jm4rcos@gmail.com>
+def check_url_for_ipaddr(url):
+    # fuction to return ip address informed by url
 
-The  GNU  General  Public  License is  a free, copyleft license  for
-software and other kinds of works.
+    ip = urllib.request.urlopen(url, timeout=5).read().strip()
+    return ip
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the  Free Software Foundation,  either  version 3 of the License, or
-(at your option) any later version.
+# list with sites to check my local ip address
+url_list =  \
+        [
+        'https://wtfismyip.com/text'    ,
+        'https://api.ipify.org/'        ,
+        'http://ipecho.net/plain'
+        ]
 
-This  program  is distributed  in  the hope that it  will be useful,
-but  WITHOUT  ANY  WARRANTY;  without even  the implied warranty  of
-MERCHANTABILITY  or  FITNESS  FOR  A  PARTICULAR  PURPOSE.  See  the
-GNU General Public License for more details.
+# list to hold ip addresses
+ipa_result = []
 
-You   should  see  a copy of  the  GNU  General  Public  License  @
-<http://www.gnu.org/licenses/>.
-'''
+# url error count
+e = 0
 
-
-import urllib2
-
-try:
+# check each url in url list, save ip addresses in a list and count errors
+for l in url_list:
     try:
-        gurl = urllib2.urlopen('http://checkip.org/',timeout=5)
-        for line in gurl:
-            if line.startswith('<h1>Your IP'):
-                ip_ = line.split('>')
-                ip_ = ip_[2].split('<')
-                ip1 = ip_[0]
-        print ip1
+        ipa = check_url_for_ipaddr(l)
+        ipa_result.append(ipa)
 
-        # gurl = urllib2.urlopen('https://myexternalip.com/raw')
-        # ip2 = gurl.read().strip('\n')
-        #
-        # dig +short myip.opendns.com @resolver1.opendns.com
+    # counting check errors
+    except urllib.error.HTTPError as err:
+        e += 1
+    except urllib.error.URLError as err:
+        e += 1
 
+# evaluate ip addresses in ip address list, errors and ip mismatch
+try:
+    if len(ipa_result) == 0: raise ValueError()
+    m = 0
 
+    # compare items in ip address list to find discrepancies (check if ip add
+    # are equal, they should be!) and count them
+    for a, b in itertools.combinations(ipa_result,2):
+        if a != b: m += 1
 
-    except URLError:
-        print "err: url.err"
-
-    except socket.timeout:
-        print "err: sock.to"
+    # print them all!
+    print (ipa_result[0].decode(), 'e({})'.format(e), 'm({})'.format(m))
 
 except:
-    print 'NO EXT IP'
-    print 'NO EXT IP'
-    print '#FF0000'
+    print ('no ext ip.addr ' 'e({})'.format(e))
+    print ('no ext ip.addr ' 'e({})'.format(e))
+    print ('#FF0000')

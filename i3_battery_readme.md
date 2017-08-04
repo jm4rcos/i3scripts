@@ -1,4 +1,4 @@
-## Readme file for i3_baterry.py
+## Readme file for i3_battery.py
 
 #### Battery indication:
 
@@ -24,6 +24,8 @@ examples:
 
 
 #### Requirements
+
+Script designed to work with i3blocks to give battery status to i3bar in i3wm.
 
 This  python  script  uses  acpi  to get battery status and requires FontAwesome to be installed on your system.
 
