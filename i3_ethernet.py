@@ -17,7 +17,7 @@
 # License.
 #
 # comments/requirements:
-# no commnets/requirements
+# Script requires network manager installed
 
 import os
 
@@ -61,18 +61,17 @@ try:
     if d[1] == ' Full':     d[1] = 'FD'
     if d[1] == ' Half':     d[1] = 'HD'
 
-    # Get interface "wired-properties.carrier" status. If you have avahi running
-    # and no cable connected you may have the wrong impression that the interface
-    # is up. Checking the "wired-properties.carrier" status of interface shows if
-    # cable is connected.
+    # Get interface "wired-properties.carrier" status.
+    # "wired-properties.carrier" shows if cable is connected.
 
-    eth_w_status = os.popen("nmcli device show " + instance + \
-                       "|grep WIRED-PROPERTIES.CARRIER |awk -F' ' '{print $2}'")
+    #eth_w_status = os.popen("nmcli device show " + instance + \
+    #                   "|grep WIRED-PROPERTIES.CARRIER |awk -F' ' '{print $2}'")
 
-    eth_wire_status = eth_w_status.read().strip('\n')
+    #eth_wire_status = eth_w_status.read().strip('\n')
 
     # Print them
-    print (eth_ipa[0], s, d[1], '[', eth_wire_status, ']')
+    #print (eth_ipa[0], s, d[1], '[', eth_wire_status, ']')
+    print (eth_ipa[0], s, d[1])
 
 except:
     # Print 3 values as expected by i3blocks:

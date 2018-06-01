@@ -1,8 +1,8 @@
 ## Readme file for i3_battery.py
 
-#### Battery indication:
+#### Battery status:
 
-This python script outputs battery percentage charge status and AC adapter power cord status.
+This python script outputs battery charge status (%) and AC adapter power plug status.
 
 examples:
 
@@ -25,9 +25,9 @@ examples:
 
 #### Requirements
 
-Script designed to work with i3blocks to give battery status to i3bar in i3wm.
+Script designed to work with i3blocks to give battery status to i3bar.
 
-This  python  script  uses  acpi  to get battery status and requires FontAwesome to be installed on your system.
+This  python  script  uses  acpi  to get battery status and requires FontAwesome to be installed in your system.
 
 https://fortawesome.github.io/Font-Awesome/
 

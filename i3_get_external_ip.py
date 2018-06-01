@@ -31,7 +31,7 @@ def check_url_for_ipaddr(url):
 # list with sites to check my local ip address
 url_list =  \
         [
-        'https://wtfismyip.com/text'    ,
+        'http://plain-text-ip.com/'     ,
         'https://api.ipify.org/'        ,
         'http://ipecho.net/plain'
         ]
@@ -54,6 +54,10 @@ for l in url_list:
     except urllib.error.URLError as err:
         e += 1
 
+# Print ip address list result, for debuging pourpose
+#
+#print(ipa_result)
+
 # evaluate ip addresses in ip address list, errors and ip mismatch
 try:
     if len(ipa_result) == 0: raise ValueError()
@@ -65,9 +69,9 @@ try:
         if a != b: m += 1
 
     # print them all!
-    print (ipa_result[0].decode(), 'e({})'.format(e), 'm({})'.format(m))
+    print (ipa_result[0].decode(), 'E[{}]'.format(e), 'M[{}]'.format(m))
 
 except:
-    print ('no ext ip.addr ' 'e({})'.format(e))
-    print ('no ext ip.addr ' 'e({})'.format(e))
+    print ('no ext ip.addr ' 'E[{}]'.format(e))
+    print ('no ext ip.addr ' 'E[{}]'.format(e))
     print ('#FF0000')
