@@ -17,12 +17,8 @@
 # License.
 #
 # comments/requirements:
-# Script designed to work with i3blocks to return battery status to i3bar.
+# Script designed to work with i3blocks to return CAPS and NUM status to i3bar.
 #
-# This python  script  uses  acpi to get battery status and requires FontAwesome
-# to be installed on your system.
-#
-# [*] see https://fortawesome.github.io/Font-Awesome/
 # [*] key value  for "markup" has to be "pango" in  i3blocks config file.
 
 
