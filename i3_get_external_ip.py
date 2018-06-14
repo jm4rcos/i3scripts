@@ -72,6 +72,6 @@ try:
     print (ipa_result[0].decode(), 'E[{}]'.format(e), 'M[{}]'.format(m))
 
 except:
-    print ('no ext ip.addr ' 'E[{}]'.format(e))
-    print ('no ext ip.addr ' 'E[{}]'.format(e))
-    print ('#FF0000')
+    print ("<span font_style='italic'>no ext ip.addr</span>")
+    print ("<span font_style='italic'>no ext ip.addr</span>")
+    print ('#595959')

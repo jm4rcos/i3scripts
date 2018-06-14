@@ -45,15 +45,15 @@ num_onOff  = is_num_onOff()
 
 if caps_onOff == 'on':
     C = "<span foreground=\"white\" background=\"gray\" \
-                              font_weight=\"ultrabold\"> C </span>"
+                              font_weight=\"bold\"> C </span>"
 else:
-    C = "<span font_weight=\"ultrabold\"> C </span>"
+    C = "<span font_weight=\"bold\"> C </span>"
 
 if num_onOff  == 'on':
     N = "<span foreground=\"white\" background=\"gray\" \
-                              font_weight=\"ultrabold\"> N </span>"
+                              font_weight=\"bold\"> N </span>"
 else:
-    N = "<span font_weight=\"ultrabold\"> N </span>"
+    N = "<span font_weight=\"bold\"> N </span>"
 
 
 # Print values as expected by i3blocks:

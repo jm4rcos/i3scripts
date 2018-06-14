@@ -25,5 +25,5 @@ comments:
 
 import os
 
-os.popen("pactl set-sink-volume 1 +0.1")23
+os.popen("pactl set-sink-volume 1 +0.1")
 os.popen("pkill -RTMIN+1 i3blocks")

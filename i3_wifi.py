@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # GNU GENERAL PUBLIC LICENSE v3
 #
@@ -21,10 +21,41 @@
 
 import os
 
-# Set interface instance here. It must match your wireless interface name.
+# icon copied from fontAwesome cheatsheet, https://fontawesome.com/cheatsheet
+# just copy/paste the icon here
 
-instance = 'wlp2s0'
+wifi_icon = ""
 
+DD = {}
+
+def find_interface_instance():
+    devices = os.popen("nmcli dev show").read().split("\n")
+    for line in devices:
+        if line.startswith("GENERAL.DEVICE")  :GD=line.split(":")[1].lstrip()
+        if line.startswith("GENERAL.TYPE")    :GT=line.split(":")[1].lstrip()
+        if line == "":
+            if GT.startswith("wif"): DD[GT]=GD     # wifi if
+            if GD.startswith("enp"): DD[GT]=GD     # ethernet if
+    #returns value for wifi or ethernet
+    instance = DD['wifi']
+    return instance
+
+
+def check_wifi_radio_status():
+    r = ''
+    r_status = os.popen("nmcli radio wifi").read().strip()
+    if r_status == 'enabled':  r = True
+    if r_status == 'disabled': r = False
+    return r
+
+
+instance     = find_interface_instance()
+radio_status = check_wifi_radio_status()
+
+if radio_status == True:
+    icon = "<span fgcolor='#b0b0b0' font='FontAwesome'>&#xf1eb;</span>"
+else:
+    icon = "<span fgcolor='#404040' font='FontAwesome'>&#xf1eb;</span>"
 
 try:
     # Get interface ip address.
@@ -44,11 +75,14 @@ try:
     # Print them all
     #
     signal = signal+'%'
-    print wipaddr[0], signal
+    print (icon,         \
+           wipaddr[0],   \
+           signal        \
+          )
 
 except:
     # Print 3 values as expected by i3blocks - full text, short text and color.
     #
-    print 'down'
-    print 'down'
-    print '#FF0000'
+    print (icon, "<span font_style='italic'> no ip_addr</span>")
+    print (icon, "<span font_style='italic'> no ip_addr</span>")
+    print ('#595959')

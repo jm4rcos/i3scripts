@@ -28,6 +28,9 @@
 import os
 import sys
 
+# defining primary output
+p_output = os.popen("xrandr |grep primary |awk -F' ' '{ print $1 }'").read().strip()
+
 # current brightness value as float type
 #
 b = os.popen("xrandr --verbose | grep -i brightness | cut -f2 -d ' ' | head -n1")
@@ -45,4 +48,4 @@ except IndexError:
 # brightness values
 #
 if any(x == new_b for x in [0.1, -0.1, 0.3, -0.3, 0.5, -0.5]):
-    os.popen("xrandr --output LVDS-0 --brightness " + str(b + new_b))
+    os.popen("xrandr --output " + p_output + " --brightness " + str(b + new_b))

@@ -21,25 +21,39 @@
 
 import os
 
-# Set interface instance here. It must match your ethernet interface name.
-instance = 'enp5s0'
+DD = {}
+
+def find_interface_instance():
+    devices = os.popen("nmcli dev show").read().split("\n")
+    for line in devices:
+        if line.startswith("GENERAL.DEVICE")  :GD=line.split(":")[1].lstrip()
+        if line.startswith("GENERAL.TYPE")    :GT=line.split(":")[1].lstrip()
+        if line == "":
+            if GT.startswith("wif"): DD[GT]=GD
+            if GD.startswith("enp"): DD[GT]=GD
+    instance = DD['ethernet'] #returns value for wifi or ethernet
+    return instance
+
+instance = find_interface_instance()
 
 try:
-    # Get interface status, if unavailable, quit.
+    # Get interface carrier status, if "off", quit.
 
     show_i = os.popen("nmcli device show " + instance )
     status = show_i.read().split('\n')
     for item in status:
-        if item.startswith('GENERAL.STATE'):
+        if item.startswith('WIRED-PROPERTIES.CARRIER'):
             item = item.split(':')
             item = item[1].lstrip(' ').split(' ')
-            if item[0] == '20' : quit()
+            if item[0] == 'off' : quit()
 
     # Get interface ip address.
 
     eth_ipa = os.popen("nmcli device show " + instance + \
                                     "|grep IP4.ADDRESS |awk -F' ' '{print $2}'")
     eth_ipa = eth_ipa.read().split('/')
+    if eth_ipa[0] == '': eth_ipa[0] = \
+                                 "<span font_style='italic'> no ip_addr </span>"
 
     # Get interface speed and duplex.
 
@@ -71,12 +85,12 @@ try:
 
     # Print them
     #print (eth_ipa[0], s, d[1], '[', eth_wire_status, ']')
-    print (eth_ipa[0], s, d[1])
+    if eth_ipa[0] != '': print (eth_ipa[0], s, d[1])
 
 except:
     # Print 3 values as expected by i3blocks:
     # full text, short text and color.
 
-    print ('down')
-    print ('down')
-    print ('#FF0000')
+    print ("<span font_style='italic'> no ip_addr</span>")
+    print ("<span font_style='italic'> no ip_addr</span>")
+    print ('#595959')
